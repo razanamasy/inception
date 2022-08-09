@@ -11,5 +11,8 @@ start :
 stop :
 	docker container stop my_server
 
+exec :
+	docker exec -ti my_server /bin/ls
+
 rm :
 	docker container rm my_server
