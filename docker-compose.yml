@@ -1,3 +1,13 @@
+version:"3"
 services:
-  service1:
+  NGINX:
     image: my_server
+    depends_on:
+      - wordpress
+    ports:
+      - "443:443"
+    networks:
+      - my_network
+  
+
+  wordpress:
