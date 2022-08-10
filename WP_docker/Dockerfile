@@ -3,7 +3,8 @@ WORKDIR /app
 COPY
 RUN apt-get update
 RUN apt-get upgrade
-RUN apt-gt install php-fpm
+RUN apt-gt install php7 php-fpm
+RUN apt-get install curl
 RUN yes | curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.pha
 RUN yes | wp core download
 RUN yes | wp core config --dbhost=host.db --dbname=prefix_db --dbuser=username --dbpass=password
