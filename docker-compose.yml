@@ -2,6 +2,7 @@ version:"3"
 services:
   NGINX:
     image: my_server
+    container_name: my_server
     depends_on:
       - wordpress
     ports:
@@ -9,5 +10,15 @@ services:
     networks:
       - my_network
   
-
   wordpress:
+    image: my_wp
+    container_name: my_wp
+    environment:
+      #list of env data for wp-config here, we gon reuse them in the start.sh file
+      - DBHOST=${DBHOST}
+      - DBNAME=${DBNAME}
+      - DBUSER=${DBUSER}
+      - DBPASS=${DBPASS}
+    depends_on:
+      - maria
+    ports:
