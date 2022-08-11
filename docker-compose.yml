@@ -1,8 +1,23 @@
 version:"3"
 services:
-  NGINX:
-    image: my_server
-    container_name: my_server
+
+  mariadb:
+    image: db_server
+    container_name: db_server
+    #volume: ----> For the data's persistence see that later
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DB_NAME=${MYSQL_DB_NAME};
+      - MYSQL_DB_USER=${MYSQL_DB_USER};
+      - MYSQL_DB_PASS=${MYSQL_DB_PASS};
+    ports:
+      - "3306:3306"
+    networks:
+      - my_network
+
+  nginx:
+    image: web_server
+    container_name: web_server
     depends_on:
       - wordpress
     ports:
@@ -11,14 +26,25 @@ services:
       - my_network
   
   wordpress:
-    image: my_wp
-    container_name: my_wp
+    image: php_fpm
+    container_name: php_fmp
+    #volume: /data/html:/var/www/html ----> For the configuration's persistence see that later
     environment:
-      #list of env data for wp-config here, we gon reuse them in the start.sh file
-      - DBHOST=${DBHOST}
-      - DBNAME=${DBNAME}
-      - DBUSER=${DBUSER}
-      - DBPASS=${DBPASS}
+      #list of env iwe get on the .env data for wp-config here, we gon reuse them in the start.sh file
+      - WP_DB_HOST=${WP_DB_HOST}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - WP_DB_NAME=${MYSQL_DB_NAME}
+      - WP_DB_USER=${MYSQL_DB_USER}
+      - WP_DB_PASS=${MYSQL_DB_PASS}
     depends_on:
-      - maria
+      - mariadb
     ports:
+      - "9000:9000"
+    links:
+      - mariadb
+    networks:
+      - my_network
+  
+networks:
+  my_network:
+
