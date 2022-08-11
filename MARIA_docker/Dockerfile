@@ -5,5 +5,6 @@ RUN yes | sudo apt-get upgrade
 RUN sudo apt-get update
 RUN yes | sudo apt-get upgrade
 RUN yes | sudo apt-get mariadb-server mariadb-client
+EXPOSE 3306
 CMD ["bash", "start.sh"]
 #in the script we have to create a database and a client
