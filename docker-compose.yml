@@ -1,11 +1,8 @@
-version:"3"
+version: "3"
 services:
-
   mariadb:
     image: db_server
     container_name: db_server
-    dockerfile: Dockerfile
-    #volume: ----> For the data's persistence see that later
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DB_NAME=${MYSQL_DB_NAME};
@@ -19,7 +16,6 @@ services:
   nginx:
     image: web_server
     container_name: web_server
-    dockerfile: Dockerfile
     depends_on:
       - wordpress
     ports:
@@ -30,10 +26,7 @@ services:
   wordpress:
     image: php_fpm
     container_name: php_fmp
-    dockerfile: Dockerfile
-    #volume: /data/html:/var/www/html ----> For the configuration's persistence see that later
     environment:
-      #list of env iwe get on the .env data for wp-config here, we gon reuse them in the start.sh file
       - WP_DB_HOST=${WP_DB_HOST}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - WP_DB_NAME=${MYSQL_DB_NAME}
