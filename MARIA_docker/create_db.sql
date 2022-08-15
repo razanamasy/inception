@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS Maria ;
+SHOW DATABASES ;
+
+CREATE USER 'hina'@localhost IDENTIFIED BY 'mdp';
+
+GRANT USAGE ON *.* TO 'hina'@localhost IDENTIFIED BY 'mdp';
+
+GRANT ALL PRIVILEGES ON Maria.* TO 'hina'@localhost IDENTIFIED BY 'mdp';
+
+FLUSH PRIVILEGES;
