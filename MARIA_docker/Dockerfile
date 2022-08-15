@@ -7,4 +7,4 @@ RUN apt-get update
 RUN yes | apt-get upgrade
 RUN yes | apt install mariadb-server mariadb-client
 EXPOSE 3306
-CMD ["bash", "start1.sh"]
+CMD ["bash", "start.sh"]
