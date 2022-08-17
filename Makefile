@@ -3,4 +3,4 @@ all:
 rm: 
 	docker stop nginx
 	docker container rm nginx mariadb wordpress
-	docker images
+	docker rmi nginx wordpress mariadb
