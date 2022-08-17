@@ -1,7 +1,6 @@
 FROM debian:buster
 WORKDIR /app
 COPY start.sh /app
-COPY start1.sh /app
 COPY create_db.sql /app
 RUN apt-get update
 RUN yes | apt-get upgrade
