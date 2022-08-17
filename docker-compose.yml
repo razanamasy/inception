@@ -34,7 +34,7 @@ services:
     container_name: wordpress
     build: wordpress
     environment:
-      - WP_DB_HOST=${WP_DB_HOST}
+      - DB_HOST=${DB_HOST}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - WP_DB_NAME=${MYSQL_DB_NAME}
       - WP_DB_USER=${MYSQL_DB_USER}

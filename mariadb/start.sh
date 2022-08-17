@@ -1,2 +1,11 @@
 service mysql start
-mysql -u root -proot < create_db.sql
+echo "$MYSQL_DB_NAME $MYSQL_DB_USER et $MYSQL_DB_PASS"
+mysql -u root -proot  << EOF
+CREATE DATABASE IF NOT EXISTS $MYSQL_DB_NAME ;
+SHOW DATABASES ;
+USE $MYSQL_DB_NAME ;
+CREATE USER '$MYSQL_DB_USER'@'wordpress.inception_my_network' IDENTIFIED BY '$MYSQL_DB_PASS';
+SELECT user FROM user
+GRANT ALL PRIVILEGES ON $MYSQL_DB_NAME.* TO '$MYSQL_DB_USER'@'wordpress.inception_my_network' IDENTIFIED BY '$MYSQL_DB_PASS';
+FLUSH PRIVILEGES;
+EOF
