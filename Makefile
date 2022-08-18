@@ -1,5 +1,9 @@
 all:
 	docker-compose up --build --detach
+rmMaria:
+	docker container rm mariadb
+	docker rmi mariadb
+
 rm: 
 	docker stop nginx
 	docker container rm nginx mariadb wordpress
