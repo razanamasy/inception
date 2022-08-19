@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#sleep
+sleep 10
 
 cd /var/www/html
 yes | wp core download --allow-root --path="." 
