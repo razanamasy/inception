@@ -4,8 +4,11 @@ RUN apt-get update
 RUN yes | apt-get upgrade
 RUN yes | apt install mariadb-server mariadb-client
 RUN rm /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN rm /etc/mysql/mariadb.conf.d/50-mysqld_safe.cnf 
 COPY /conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+#COPY /conf/50-mysqld_safe.cnf /etc/mysql/mariadb.conf.d/50-mysqld_safe.cnf
 EXPOSE 3306
 RUN chmod 777 start1.sh
+RUN mkdir -p /var/lib/mysql
 CMD ["./start1.sh"]
 #CMD ["tail", "-f", "/dev/null"]
