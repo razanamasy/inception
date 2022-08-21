@@ -1,6 +1,5 @@
 FROM debian:buster
-WORKDIR /app
-COPY /start.sh /app
+COPY conf/start.sh /start.sh
 
 #ici wp-config.php a copier aussi
 #ici wp-config.php a copier aussi fichier de config wordpress
@@ -18,7 +17,12 @@ RUN yes | curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/
 
 RUN mv wp-cli.phar /usr/local/bin/wp
 RUN chmod +x  /usr/local/bin/wp
+
+#RUN	rm /etc/php7/php-fpm.d/www.conf
 #COPY conf/www.conf /etc/php7/php-fpm.d/www.conf
+
+COPY conf/wp-config.php /wp-config.php
+
 RUN mkdir -p var/www/html
 EXPOSE 9000
 CMD ["bash", "start.sh"]
