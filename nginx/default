@@ -1,21 +1,18 @@
-http {
-	# http context
-	server {
-	# first server context
-		listen : 443;
-		server_name nginx_serv;
-	
-		root /var/www/html
-		location / {
-			index	index.php index.html;
-		}
-		location ~ \.php$ {
-			fastcgi_split_path_info ^(.+\.php)(/.+)$;
-			fastcgi_pass wordpress:9000;
-			fastcgi_index index.php;
-			include fastcgi_params;
-			fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-			fastcgi_param SCRIPT_NAME $fastcgi_script_name;
-		}	
+server {
+# first server context
+	listen	443;
+	server_name nginx_serv;
+
+	root /var/www/html;
+	location / {
+		index	index.php index.html;
 	}
+	location ~ \.php$ {
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
+		fastcgi_pass wordpress:9000;
+		fastcgi_index index.php;
+		include fastcgi_params;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+	}	
 }
