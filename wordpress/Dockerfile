@@ -18,10 +18,11 @@ RUN yes | curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/
 RUN mv wp-cli.phar /usr/local/bin/wp
 RUN chmod +x  /usr/local/bin/wp
 
-#RUN	rm /etc/php7/php-fpm.d/www.conf
-#COPY conf/www.conf /etc/php7/php-fpm.d/www.conf
+RUN rm /etc/php/7.3/fpm/pool.d/www.conf
+COPY conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
-COPY conf/wp-config.php /wp-config.php
+RUN rm /etc/php/7.3/fpm/php-fpm.conf
+COPY conf/www.conf /etc/php/7.3/fpm/php-fpm.conf
 
 RUN mkdir -p var/www/html
 EXPOSE 9000

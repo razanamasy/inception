@@ -13,8 +13,6 @@ services:
       - MYSQL_DB_NAME=${MYSQL_DB_NAME};
       - MYSQL_DB_USER=${MYSQL_DB_USER};
       - MYSQL_DB_PASS=${MYSQL_DB_PASS};
-    ports:
-      - "3306:3306"
     networks:
       - my_network
 
@@ -41,8 +39,6 @@ services:
       - WP_DB_PASS=${MYSQL_DB_PASS}
     depends_on:
       - mariadb
-    ports:
-      - "9000:9000"
     links:
       - mariadb
     networks:
