@@ -1,6 +1,6 @@
 all :
 	docker build -t my_db .
-	docker run -p 3306:3306 --name my_db my_db
+	docker run -d -p 3306:3306 --name my_db my_db
 
 status :
 	docker ps -a

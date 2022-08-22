@@ -1,12 +1,18 @@
 #!/bin/bash
 
+wppath="/var/www/html"
+
 sleep 10
 
-cd /var/www/html
-yes | wp core download --allow-root --path="." 
-rm wp-config.php
-cp ../../../wp-config.php ./
-cd ../../../
-wp core install --allow-root --path="/var/www/html" --url=hrazanam.42.fr --title="coucou" --admin_name=wordpress_admin --admin_password=admin_password --admin_email=hina.razanamasy@gmail.com --skip-email
-wp user create --allos-root --path="/var/www/html" _user _user@example.com --role=author
-service php7.3-fpm start
+
+yes | wp core download --allow-root --path="$wppath" 
+
+wp config create --dbpass=root --path="$wppath" --allow-root --dbname=hina_db --dbuser=hina --dbhost=mariadb.inception_my_network --config-file="$wppath/wp-config.php"
+
+ls -la "$wppath"
+
+wp core install --allow-root --path="$wppath" --url=hrazanam.42.fr --title="coucou" --admin_name=wordpress_admin --admin_password=admin_password --admin_email=hina.razanamasy@gmail.com --skip-email
+
+wp user create --allow-root --path="$wppath" user user@example.com --role=author
+
+exec php-fpm7.3 -F

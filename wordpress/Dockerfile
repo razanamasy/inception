@@ -11,7 +11,7 @@ COPY conf/start.sh /start.sh
 RUN apt-get update
 #RUN yes | apt-get upgrade
 RUN yes | apt-get install mariadb-client
-RUN yes | apt-get install php php7.3-fpm
+RUN yes | apt-get install php php7.3-fpm php-mysqli
 RUN yes | apt-get install curl
 RUN yes | curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 

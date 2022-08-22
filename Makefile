@@ -13,6 +13,7 @@ rmWP:
 rm: 
 	docker stop nginx
 	docker stop mariadb
+	docker stop wordpress
 	docker container rm nginx mariadb wordpress
 	docker rmi nginx wordpress mariadb 
 
