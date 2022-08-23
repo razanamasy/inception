@@ -1,4 +1,6 @@
 all:
+	mkdir -p ../data/maria-data
+	mkdir -p ../data/wp-data
 	docker-compose up --build --detach
 rmMaria:
 	docker stop mariadb

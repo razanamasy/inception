@@ -13,6 +13,8 @@ services:
       - MYSQL_DB_NAME=${MYSQL_DB_NAME};
       - MYSQL_DB_USER=${MYSQL_DB_USER};
       - MYSQL_DB_PASS=${MYSQL_DB_PASS};
+    volumes:
+      - /home/hrazanam/data/maria-data:/var/lib/mysql
     networks:
       - my_network
 
@@ -24,6 +26,8 @@ services:
       - wordpress
     ports:
       - "443:443"
+    volumes:
+      - /home/hrazanam/data/wp-data:/var/www/html
     networks:
       - my_network
   
@@ -41,6 +45,8 @@ services:
       - mariadb
     links:
       - mariadb
+    volumes:
+      - /home/hrazanam/data/wp-data:/var/www/html
     networks:
       - my_network
   
