@@ -16,6 +16,7 @@ rm:
 	docker stop wordpress
 	docker container rm nginx mariadb wordpress
 	docker rmi nginx wordpress mariadb 
+	find . -type f -name "*.sw[klmnop]" -delete
 
 status:
 	docker images
