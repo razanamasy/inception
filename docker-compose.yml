@@ -10,11 +10,11 @@ services:
     build: mariadb
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DB_NAME=${MYSQL_DB_NAME};
-      - MYSQL_DB_USER=${MYSQL_DB_USER};
-      - MYSQL_DB_PASS=${MYSQL_DB_PASS};
-        #   volumes:
-        #   - maria-dataa:/var/lib/mysql
+      - MYSQL_DB_NAME=${MYSQL_DB_NAME}
+      - MYSQL_DB_USER=${MYSQL_DB_USER}
+      - MYSQL_DB_PASS=${MYSQL_DB_PASS}
+    volumes:
+      - maria-dataa:/var/lib/mysql
     networks:
       - my_network
 

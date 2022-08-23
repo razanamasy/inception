@@ -8,6 +8,7 @@ COPY /conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 EXPOSE 3306
 RUN chmod 777 start1.sh
 RUN mkdir -p /var/lib/mysql
-RUN chmod 777 /var/lib/mysql
-CMD ["tail", "-f", "/dev/null"]
-#CMD ["./start1.sh"]
+RUN	chown -R mysql /var/lib/mysql
+RUN	chmod 777 /var/lib/mysql
+#CMD ["tail", "-f", "/dev/null"]
+CMD ["./start1.sh"]
