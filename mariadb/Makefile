@@ -16,6 +16,7 @@ exec :
 	docker exec -ti my_db /bin/ls
 
 rm :
+	docker container stop my_db
 	docker container rm my_db
-#	docker rm -fv $(docker ps -aq)
+	docker image rm my_db
 

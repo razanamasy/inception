@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.6"
 
   #volumes:
   #wordpress:
@@ -13,8 +13,8 @@ services:
       - MYSQL_DB_NAME=${MYSQL_DB_NAME};
       - MYSQL_DB_USER=${MYSQL_DB_USER};
       - MYSQL_DB_PASS=${MYSQL_DB_PASS};
-    volumes:
-      - /home/hrazanam/data/maria-data:/var/lib/mysql
+        #   volumes:
+        #   - maria-dataa:/var/lib/mysql
     networks:
       - my_network
 
@@ -27,7 +27,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - /home/hrazanam/data/wp-data:/var/www/html
+      - wp-dataa:/var/www/html
     networks:
       - my_network
   
@@ -46,10 +46,23 @@ services:
     links:
       - mariadb
     volumes:
-      - /home/hrazanam/data/wp-data:/var/www/html
+      - wp-dataa:/var/www/html
     networks:
       - my_network
   
 networks:
   my_network:
 
+volumes:
+  maria-dataa:
+    driver: local
+    driver_opts:
+      o: bind
+      type: "nfs"
+      device: "/home/hrazanam/data/maria-data"
+  wp-dataa:
+    driver: local
+    driver_opts:
+      o: bind
+      type: "nfs"
+      device: "/home/hrazanam/data/wp-data"

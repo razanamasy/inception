@@ -1,15 +1,9 @@
 FROM debian:buster
 COPY conf/start.sh /start.sh
 
-#ici wp-config.php a copier aussi
-#ici wp-config.php a copier aussi fichier de config wordpress
-#ici php-fpm.php a copier aussi fichier de config wordpress
-#les fichiers de configuration php-fpm et wordpress
-
-#COPY conf/php-fpm.conf /etc/php7/php-fpm.conf
 
 RUN apt-get update
-#RUN yes | apt-get upgrade
+RUN yes | apt-get upgrade
 RUN yes | apt-get install mariadb-client
 RUN yes | apt-get install php php7.3-fpm php-mysqli
 RUN yes | apt-get install curl
