@@ -5,13 +5,10 @@ services:
     image: mariadb
     container_name: mariadb
     build: requirements/mariadb
-    environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DB_NAME=${MYSQL_DB_NAME}
-      - MYSQL_DB_USER=${MYSQL_DB_USER}
-      - MYSQL_DB_PASS=${MYSQL_DB_PASS}
+    env_file:
+      - .env
     volumes:
-      - maria-dataa:/var/lib/mysql
+      - maria-data:/var/lib/mysql
     networks:
       - my_network
 
@@ -24,7 +21,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - wp-dataa:/var/www/html
+      - wp-data:/var/www/html
     networks:
       - my_network
   
@@ -32,18 +29,14 @@ services:
     image: wordpress
     container_name: wordpress
     build: requirements/wordpress
-    environment:
-      - DB_HOST=${DB_HOST}
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - WP_DB_NAME=${MYSQL_DB_NAME}
-      - WP_DB_USER=${MYSQL_DB_USER}
-      - WP_DB_PASS=${MYSQL_DB_PASS}
+    env_file:
+      - .env
     depends_on:
       - mariadb
     links:
       - mariadb
     volumes:
-      - wp-dataa:/var/www/html
+      - wp-data:/var/www/html
     networks:
       - my_network
   
@@ -51,13 +44,13 @@ networks:
   my_network:
 
 volumes:
-  maria-dataa:
+  maria-data:
     driver: local
     driver_opts:
       o: bind
       type: "nfs"
       device: "/home/hrazanam/data/maria-data"
-  wp-dataa:
+  wp-data:
     driver: local
     driver_opts:
       o: bind
