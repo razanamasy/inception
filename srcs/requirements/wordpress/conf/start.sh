@@ -7,7 +7,7 @@ sleep 10
 
 yes | wp core download --allow-root --path="$wppath" 
 
-wp config create --dbpass=root --path="$wppath" --allow-root --dbname=hina_db --dbuser=hina --dbhost=mariadb.inception_my_network --config-file="$wppath/wp-config.php"
+wp config create --dbpass=root --path="$wppath" --allow-root --dbname=hina_db --dbuser=hina --dbhost=mariadb.srcs_my_network --config-file="$wppath/wp-config.php"
 
 ls -la "$wppath"
 

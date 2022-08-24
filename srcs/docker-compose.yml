@@ -1,13 +1,10 @@
 version: "3.6"
 
-  #volumes:
-  #wordpress:
-
 services:
   mariadb:
     image: mariadb
     container_name: mariadb
-    build: mariadb
+    build: requirements/mariadb
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DB_NAME=${MYSQL_DB_NAME}
@@ -21,7 +18,7 @@ services:
   nginx:
     image: nginx
     container_name: nginx
-    build: nginx
+    build: requirements/nginx
     depends_on:
       - wordpress
     ports:
@@ -34,7 +31,7 @@ services:
   wordpress:
     image: wordpress
     container_name: wordpress
-    build: wordpress
+    build: requirements/wordpress
     environment:
       - DB_HOST=${DB_HOST}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
