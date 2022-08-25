@@ -21,12 +21,13 @@ rm_vol:
 	docker volume rm srcs_wp-data
 
 rm_useless:
-	docker stop $ (docker ps -a -q)
-	docker rm $ (docker ps -a -q)
-	docker rmi $ (docker images -a -q)
+	docker stop $(docker ps -a -q)
+	docker rm $(docker ps -a -q)
+	docker rmi $(docker images -a -q)
 
 rm: 
 	docker-compose -f srcs/docker-compose.yml down 
+	docker rmi nginx mariadb wordpress
 	find . -type f -name "*.sw[klmnop]" -delete
 
 status:
