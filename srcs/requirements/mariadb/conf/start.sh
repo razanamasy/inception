@@ -5,8 +5,8 @@ service mysql start
 mysql  << EOF
 CREATE DATABASE IF NOT EXISTS hina_db ;
 SHOW DATABASES ;
-CREATE USER "hina"@"wordpress.srcs_my_network" IDENTIFIED BY "root";
-GRANT ALL PRIVILEGES ON hina_db.* TO "hina"@"wordpress.srcs_my_network" IDENTIFIED BY "root";
+CREATE USER "hina"@"wordpress.srcs_my_network" IDENTIFIED BY "$MYSQL_DB_PASS";
+GRANT ALL PRIVILEGES ON hina_db.* TO "hina"@"wordpress.srcs_my_network" IDENTIFIED BY "$MYSQL_DB_PASS";
 FLUSH PRIVILEGES;
 EOF
 sleep 3

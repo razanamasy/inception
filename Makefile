@@ -4,23 +4,29 @@ all:
 	chmod 777 /home/hrazanam/data/wp-data
 	docker-compose -f srcs/docker-compose.yml up --build --detach
 
+start:
+	docker-compose -f srcs/docker-compose.yml start 
+
 stop:
 	docker-compose -f srcs/docker-compose.yml stop 
+
+rm_cont:
 	docker container rm nginx mariadb wordpress
+
+rm_image:
+	docker rmi nginx mariadb wordpress
+
+rm_vol:
 	docker volume rm srcs_maria-data
 	docker volume rm srcs_wp-data
 
-rmvol:
-
+rm_useless:
+	docker stop $ (docker ps -a -q)
+	docker rm $ (docker ps -a -q)
+	docker rmi $ (docker images -a -q)
 
 rm: 
-	docker stop nginx
-	docker stop mariadb
-	docker stop wordpress
-	docker container rm nginx mariadb wordpress
-	docker rmi nginx wordpress mariadb 
-	docker volume rm srcs_maria-data
-	docker volume rm srcs_wp-data
+	docker-compose -f srcs/docker-compose.yml down 
 	find . -type f -name "*.sw[klmnop]" -delete
 
 status:
