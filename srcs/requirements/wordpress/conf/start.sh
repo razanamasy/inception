@@ -15,5 +15,4 @@ wp core install --allow-root --path="$wppath" --url=hrazanam.42.fr --title="couc
 
 wp user create --allow-root --path="$wppath" user user@example.com --role=author --user_pass=$ADMIN_PASS
 
-#tail -f /dev/null
 exec php-fpm7.3 -F

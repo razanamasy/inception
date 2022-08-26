@@ -10,5 +10,4 @@ RUN chmod 777 start.sh
 RUN mkdir -p /var/lib/mysql
 RUN	chown -R root /var/lib/mysql
 RUN	chmod 777 /var/lib/mysql
-#CMD ["tail", "-f", "/dev/null"]
 CMD ["./start.sh"]
