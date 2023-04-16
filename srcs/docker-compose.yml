@@ -1,0 +1,56 @@
+version: "3.6"
+
+services:
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    build: requirements/mariadb
+    env_file:
+      - .env
+    volumes:
+      - maria-data:/var/lib/mysql
+    networks:
+      - my_network
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    build: requirements/nginx
+    depends_on:
+      - wordpress
+    ports:
+      - "443:443"
+    volumes:
+      - wp-data:/var/www/html
+    networks:
+      - my_network
+  
+  wordpress:
+    image: wordpress
+    container_name: wordpress
+    build: requirements/wordpress
+    env_file:
+      - .env
+    depends_on:
+      - mariadb
+    volumes:
+      - wp-data:/var/www/html
+    networks:
+      - my_network
+  
+networks:
+  my_network:
+
+volumes:
+  maria-data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: "nfs"
+      device: "/home/hrazanam/data/maria-data"
+  wp-data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: "nfs"
+      device: "/home/hrazanam/data/wp-data"
