@@ -12,7 +12,7 @@
 
 user                    = root
 pid-file                = /run/mysqld/mysqld.pid
-#socket                  = /run/mysqld/mysqld.sock
+socket                  = /run/mysqld/mysqld.sock
 skip-networking			= false
 port           			= 3306
 basedir                 = /usr

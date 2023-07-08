@@ -1,6 +1,9 @@
 #!/bin/bash
 
-#mysql_install_db --user=root --basedir=/usr --datadir=/var/lib/mysql
+#In case of corrupted database files ! if doesn't work, remove then
+#command below, then chmod and chown again 
+mysql_install_db --user=root --basedir=/usr --datadir=/var/lib/mysql
+
 service mysql start
 mysql  << EOF
 CREATE DATABASE IF NOT EXISTS hina_db ;

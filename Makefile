@@ -1,7 +1,7 @@
 all:
-	mkdir -p /home/hrazanam/data/maria-data
-	mkdir -p /home/hrazanam/data/wp-data
-	chmod 777 /home/hrazanam/data/wp-data
+	mkdir -p /Users/hinaraza/data/maria-data
+	mkdir -p /Users/hinaraza/data/wp-data
+	chmod 777 /Users/hinaraza/data/wp-data
 	docker-compose -f srcs/docker-compose.yml up --build --detach
 
 start:
