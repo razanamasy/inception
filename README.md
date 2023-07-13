@@ -9,3 +9,7 @@ L’application n’est accessible que depuis le port 443, correspondant au port
 ### Installation
 Depuis la racine
 #### $ make
+
+#### Warning
+
+Ne psa oublier d'assimiler localhost à hrazanam.42.fr  dans /etc/hosts
